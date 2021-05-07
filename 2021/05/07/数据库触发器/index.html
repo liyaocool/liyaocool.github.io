@@ -20,28 +20,29 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;liyaocool.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Pisces&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script>
-<meta name="description" content="hexo常用的指令,包括创建文章,生成页面,发布.">
+<meta name="description" content="所谓触发器,就是在指定表上，(insert(插入)、update(跟新)、delete(删除))事件动作,触发（After(之后)时机,Before(之前)），执行指定的一群或一个sql语句。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo 常用指令">
-<meta property="og:url" content="http://liyaocool.github.io/2021/05/06/hexo%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/index.html">
+<meta property="og:title" content="数据库触发器">
+<meta property="og:url" content="http://liyaocool.github.io/2021/05/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A7%A6%E5%8F%91%E5%99%A8/index.html">
 <meta property="og:site_name" content="大尧的博客">
-<meta property="og:description" content="hexo常用的指令,包括创建文章,生成页面,发布.">
+<meta property="og:description" content="所谓触发器,就是在指定表上，(insert(插入)、update(跟新)、delete(删除))事件动作,触发（After(之后)时机,Before(之前)），执行指定的一群或一个sql语句。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-05-06T09:13:02.000Z">
-<meta property="article:modified_time" content="2021-05-07T07:13:02.000Z">
+<meta property="article:published_time" content="2021-05-07T08:25:02.000Z">
+<meta property="article:modified_time" content="2021-05-07T08:30:02.000Z">
 <meta property="article:author" content="大尧">
-<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="mysql">
+<meta property="article:tag" content="oracle">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://liyaocool.github.io/2021/05/06/hexo%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/">
+<link rel="canonical" href="http://liyaocool.github.io/2021/05/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A7%A6%E5%8F%91%E5%99%A8/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;liyaocool.github.io&#x2F;2021&#x2F;05&#x2F;06&#x2F;hexo%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;05&#x2F;06&#x2F;hexo常用指令&#x2F;&quot;,&quot;title&quot;:&quot;hexo 常用指令&quot;}</script>
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;liyaocool.github.io&#x2F;2021&#x2F;05&#x2F;07&#x2F;%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A7%A6%E5%8F%91%E5%99%A8&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;05&#x2F;07&#x2F;数据库触发器&#x2F;&quot;,&quot;title&quot;:&quot;数据库触发器&quot;}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
-<title>hexo 常用指令 | 大尧的博客</title><script src="/js/config.js"></script>
+<title>数据库触发器 | 大尧的博客</title><script src="/js/config.js"></script>
   
 
 
@@ -147,7 +148,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E7%94%9F%E6%88%90"><span class="nav-number">1.</span> <span class="nav-text">文章生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E9%A1%B5%E9%9D%A2"><span class="nav-number">2.</span> <span class="nav-text">生成页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2"><span class="nav-number">3.</span> <span class="nav-text">部署</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%A7%A6%E5%8F%91%E5%99%A8%E8%AF%AD%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">创建触发器语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%A7%A6%E5%8F%91%E5%99%A8%E5%AE%9E%E4%BE%8B"><span class="nav-number">1.1.</span> <span class="nav-text">创建触发器实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A6%E5%8F%91%E5%99%A8%E7%9A%84%E5%85%B6%E4%BB%96%E5%91%BD%E4%BB%A4"><span class="nav-number">1.2.</span> <span class="nav-text">触发器的其他命令</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -218,7 +219,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://liyaocool.github.io/2021/05/06/hexo%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/">
+    <link itemprop="mainEntityOfPage" href="http://liyaocool.github.io/2021/05/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A7%A6%E5%8F%91%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/author.jpg">
@@ -231,7 +232,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          hexo 常用指令
+          数据库触发器
         </h1>
 
         <div class="post-meta-container">
@@ -241,23 +242,17 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2021-05-06 17:13:02" itemprop="dateCreated datePublished" datetime="2021-05-06T17:13:02+08:00">2021-05-06</time>
+      <time title="创建时间：2021-05-07 16:25:02 / 修改时间：16:30:02" itemprop="dateCreated datePublished" datetime="2021-05-07T16:25:02+08:00">2021-05-07</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-07 15:13:02" itemprop="dateModified" datetime="2021-05-07T15:13:02+08:00">2021-05-07</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
         </span>
     </span>
 
@@ -278,13 +273,31 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>hexo常用的指令,包括创建文章,生成页面,发布.</p>
+        <p>所谓触发器,就是在指定表上，(insert(插入)、update(跟新)、delete(删除))事件动作,触发（After(之后)时机,Before(之前)），执行指定的一群或一个sql语句。</p>
 <span id="more"></span>
-<h2 id="文章生成"><a href="#文章生成" class="headerlink" title="文章生成"></a>文章生成</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;新文章&quot;</span><br></pre></td></tr></table></figure>
-<p>然后就可以编辑 <code>source/_posts/新文章.md</code></p>
-<h2 id="生成页面"><a href="#生成页面" class="headerlink" title="生成页面"></a>生成页面</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
 
-<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<h2 id="创建触发器语法"><a href="#创建触发器语法" class="headerlink" title="创建触发器语法"></a>创建触发器语法</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CREATE TRIGGER trigger_name trigger_time trigger_event ON tbl_name FOR EACH ROW </span><br><span class="line">trigger_stmt</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>trigger_name</code>: 触发器名称，用户自行指定</li>
+<li><code>trigger_time</code>: 触发时机，取值<code>BEFORE</code>（之前）、<code>AFTER</code>（之后）</li>
+<li><code>trigger_event</code>: 触发事件，<code>INSERT</code>、<code>UPDATE</code>、<code>DELETE</code>。（插入、更新、删除）</li>
+<li><code>tbl_name</code>: 需要创建触发器的表名</li>
+<li><code>trigger_stmt</code>: 触发程序体，可以是一条SQL语句或是BEGIN和END包含的索条语句</li>
+</ul>
+<p>由上方触发时机(<code>BEFORE</code>,<code>AFTER</code>) 和触发事件(<code>INSERT</code>、<code>UPDATE</code>、<code>DELETE</code>),并且一张表上不能创建两个相同类型的触发器，因此一张表上面最多能创建 <code>6</code> 种类型的触发器：</p>
+<ul>
+<li><code>BEFORE INSERT</code>、<code>BEFORE UPDATE</code>、<code>BEFORE DELETE</code></li>
+<li><code>AFTER INSERT</code>、<code>AFTER UODATE</code>、<code>AFTER DELETE</code></li>
+</ul>
+<h3 id="创建触发器实例"><a href="#创建触发器实例" class="headerlink" title="创建触发器实例"></a>创建触发器实例</h3><p>目的：对新插入数据的名字统一改为 二狗子。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">DELIMITER $$</span><br><span class="line">CREATE TRIGGER tg_rename</span><br><span class="line">    BEFORE INSERT</span><br><span class="line">    ON t_user</span><br><span class="line">    FOR EACH ROW</span><br><span class="line">BEGIN</span><br><span class="line">    SET NEW.name = &#x27;二狗子&#x27;;</span><br><span class="line">end $$</span><br><span class="line">DELIMITER ;</span><br><span class="line"></span><br><span class="line"># 触发器执行插入</span><br><span class="line">INSERT INTO t_user (name, gender, age)</span><br><span class="line">VALUES (&#x27;二哈&#x27;, 1, 15);</span><br></pre></td></tr></table></figure>
+
+<p>上方有个 <code>NEW</code>/<code>OLD</code>,表示新增的记录或删除的记录。</p>
+<h3 id="触发器的其他命令"><a href="#触发器的其他命令" class="headerlink" title="触发器的其他命令"></a>触发器的其他命令</h3><ul>
+<li>显示触发器：<code>SHOW TRIGGER</code></li>
+<li>删除触发器：<code>DROP TRIGGER IF EXISTS tg_name</code></li>
+</ul>
+
     </div>
 
     
@@ -311,17 +324,21 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/hexo/" rel="tag"># hexo</a>
+              <a href="/tags/mysql/" rel="tag"># mysql</a>
+              <a href="/tags/oracle/" rel="tag"># oracle</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/2021/05/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E5%92%8C%E5%AD%98%E5%82%A8%E5%87%BD%E6%95%B0/" rel="prev" title="数据库存储过程和存储函数">
+                  <i class="fa fa-chevron-left"></i> 数据库存储过程和存储函数
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/05/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E5%92%8C%E5%AD%98%E5%82%A8%E5%87%BD%E6%95%B0/" rel="next" title="数据库存储过程和存储函数">
-                  数据库存储过程和存储函数 <i class="fa fa-chevron-right"></i>
+                <a href="/2021/05/07/docker%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/" rel="next" title="docker常用指令">
+                  docker常用指令 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
