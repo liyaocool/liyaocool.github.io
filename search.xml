@@ -17,4 +17,59 @@
         <tag>hexo</tag>
       </tags>
   </entry>
+  <entry>
+    <title>docker常用指令</title>
+    <url>/2021/05/07/docker%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</url>
+    <content><![CDATA[<h2 id="帮助"><a href="#帮助" class="headerlink" title="帮助"></a>帮助</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker --help</span><br></pre></td></tr></table></figure>
+
+<h1 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h1><p><code>sudo /etc/init.d/docker start</code></p>
+<h1 id="镜像命令"><a href="#镜像命令" class="headerlink" title="镜像命令"></a>镜像命令</h1><h2 id="镜像帮助"><a href="#镜像帮助" class="headerlink" title="镜像帮助"></a>镜像帮助</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker images --help</span><br></pre></td></tr></table></figure>
+
+<h2 id="查询镜像"><a href="#查询镜像" class="headerlink" title="查询镜像"></a>查询镜像</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker search 镜像名</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取镜像"><a href="#获取镜像" class="headerlink" title="获取镜像"></a>获取镜像</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull 镜像名</span><br></pre></td></tr></table></figure>
+<h2 id="查看已下载镜像"><a href="#查看已下载镜像" class="headerlink" title="查看已下载镜像"></a>查看已下载镜像</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除镜像"><a href="#删除镜像" class="headerlink" title="删除镜像"></a>删除镜像</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker rmi 镜像名</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="容器命令"><a href="#容器命令" class="headerlink" title="容器命令"></a>容器命令</h1><h2 id="容器帮助"><a href="#容器帮助" class="headerlink" title="容器帮助"></a>容器帮助</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker ps --help</span><br></pre></td></tr></table></figure>
+
+<h2 id="从镜像生成容器"><a href="#从镜像生成容器" class="headerlink" title="从镜像生成容器"></a>从镜像生成容器</h2><h3 id="交互式界面生成"><a href="#交互式界面生成" class="headerlink" title="交互式界面生成"></a>交互式界面生成</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -it [--name 别名] 镜像名</span><br></pre></td></tr></table></figure>
+<p>配合 <code>Ctrl+P+Q</code>不关闭容器退出界面使用。</p>
+<h3 id="守护式后台生成"><a href="#守护式后台生成" class="headerlink" title="守护式后台生成"></a>守护式后台生成</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d [--name 别名] 镜像名  /bin/sh -c &quot;while true;do echo hello liyaocool!;sleep 2;done&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>/bin/sh -c “…” 意为 让后台一直每两秒打印日志，防止docker的后台机制判定休眠自动停止容器。</p>
+<h2 id="查看容器"><a href="#查看容器" class="headerlink" title="查看容器"></a>查看容器</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker ps [options]</span><br></pre></td></tr></table></figure>
+<p>[options]:</p>
+<ul>
+<li>-a 查看全部；</li>
+<li>-q 只查看id；</li>
+</ul>
+<h2 id="容器的退出"><a href="#容器的退出" class="headerlink" title="容器的退出"></a>容器的退出</h2><ul>
+<li>停止容器并退出交互界面<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">exit</span><br></pre></td></tr></table></figure></li>
+<li>不停止容器并退出交互界面(快捷键)<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Ctrl + P + Q</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="容器的再进入"><a href="#容器的再进入" class="headerlink" title="容器的再进入"></a>容器的再进入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it 容器ID /bin/bash</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h1><h2 id="日志帮助"><a href="#日志帮助" class="headerlink" title="日志帮助"></a>日志帮助</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker logs --help</span><br></pre></td></tr></table></figure>
+<h2 id="日志查看"><a href="#日志查看" class="headerlink" title="日志查看"></a>日志查看</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker logs [options] 容器ID</span><br></pre></td></tr></table></figure>
+<p>options:</p>
+<ul>
+<li>-t 显示时间</li>
+<li>-f 动态跟随更新</li>
+<li>–tail n 显示最新n条日志</li>
+</ul>
+<h2 id="容器内文件-复制-到宿主机"><a href="#容器内文件-复制-到宿主机" class="headerlink" title="容器内文件 复制 到宿主机"></a>容器内文件 复制 到宿主机</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp 容器ID:/home/abc /home</span><br></pre></td></tr></table></figure>
+<p>将容器的<code>/home/abc</code> 文件复制到宿主机  <code>/home</code></p>
+<h1 id="镜像提交"><a href="#镜像提交" class="headerlink" title="镜像提交"></a>镜像提交</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker commit -m=&quot;提交的描述信息&quot; -a=&quot;作者名&quot; 容器ID 要创建的镜像名:[标签] </span><br><span class="line"></span><br><span class="line"># 镜像启动/停止</span><br></pre></td></tr></table></figure>
+<p>docker start 容器ID/别名<br>docker stop 容器ID/别名<br>```</p>
+]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>docker</tag>
+        <tag>运维</tag>
+      </tags>
+  </entry>
 </search>
