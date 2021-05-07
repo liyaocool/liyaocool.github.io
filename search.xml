@@ -3,7 +3,9 @@
   <entry>
     <title>docker常用指令</title>
     <url>/2021/05/07/docker%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</url>
-    <content><![CDATA[<h1 id="docker命令"><a href="#docker命令" class="headerlink" title="docker命令"></a>docker命令</h1><h2 id="帮助"><a href="#帮助" class="headerlink" title="帮助"></a>帮助</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker --help</span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<p>docker常用的命令,包括docker启动命令,docker镜像命令,docker容器命令等…</p>
+<span id="more"></span>
+<h1 id="docker命令"><a href="#docker命令" class="headerlink" title="docker命令"></a>docker命令</h1><h2 id="帮助"><a href="#帮助" class="headerlink" title="帮助"></a>帮助</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker --help</span><br></pre></td></tr></table></figure>
 
 <h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p><code>sudo /etc/init.d/docker start</code></p>
 <h1 id="镜像命令"><a href="#镜像命令" class="headerlink" title="镜像命令"></a>镜像命令</h1><h2 id="镜像帮助"><a href="#镜像帮助" class="headerlink" title="镜像帮助"></a>镜像帮助</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker images --help</span><br></pre></td></tr></table></figure>
@@ -75,7 +77,9 @@
   <entry>
     <title>数据库存储过程和存储函数</title>
     <url>/2021/05/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E5%92%8C%E5%AD%98%E5%82%A8%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h1 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h1><h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><h3 id="输入参数型的创建"><a href="#输入参数型的创建" class="headerlink" title="输入参数型的创建"></a>输入参数型的创建</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DELIMITER //</span><br><span class="line">CREATE PROCEDURE GetAllUsers(IN userId BIGINT)</span><br><span class="line">BEGIN</span><br><span class="line">    SELECT * FROM t_user WHERE ID = userId;</span><br><span class="line">END //</span><br><span class="line">DELIMITER ;</span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<p>有时候会忘记数据库的存储函数和存储过程,这里记录一下创建删除存储过程,创建删除存储函数SQL语法…</p>
+<span id="more"></span>
+<h1 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h1><h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><h3 id="输入参数型的创建"><a href="#输入参数型的创建" class="headerlink" title="输入参数型的创建"></a>输入参数型的创建</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DELIMITER //</span><br><span class="line">CREATE PROCEDURE GetAllUsers(IN userId BIGINT)</span><br><span class="line">BEGIN</span><br><span class="line">    SELECT * FROM t_user WHERE ID = userId;</span><br><span class="line">END //</span><br><span class="line">DELIMITER ;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><code>DELIMITER</code> 是开启用’//‘替换sql结束符 <code>;</code>的。<code>END</code> 之前<code>//</code>的才是 创建存储过程的语句整体。<br>语句结束后，要及时把<code>//</code>替换回来 <code>;</code>.</li>
 <li>IN 输入参数</li>
