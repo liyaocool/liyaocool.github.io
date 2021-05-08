@@ -75,6 +75,42 @@
       </tags>
   </entry>
   <entry>
+    <title>数据库触发器</title>
+    <url>/2021/05/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A7%A6%E5%8F%91%E5%99%A8/</url>
+    <content><![CDATA[<p>所谓触发器,就是在指定表上，(insert(插入)、update(跟新)、delete(删除))事件动作,触发（After(之后)时机,Before(之前)），执行指定的一群或一个sql语句。</p>
+<span id="more"></span>
+
+<h2 id="创建触发器语法"><a href="#创建触发器语法" class="headerlink" title="创建触发器语法"></a>创建触发器语法</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE TRIGGER trigger_name trigger_time trigger_event ON tbl_name FOR EACH ROW </span><br><span class="line">trigger_stmt</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>trigger_name</code>: 触发器名称，用户自行指定</li>
+<li><code>trigger_time</code>: 触发时机，取值<code>BEFORE</code>（之前）、<code>AFTER</code>（之后）</li>
+<li><code>trigger_event</code>: 触发事件，<code>INSERT</code>、<code>UPDATE</code>、<code>DELETE</code>。（插入、更新、删除）</li>
+<li><code>tbl_name</code>: 需要创建触发器的表名</li>
+<li><code>trigger_stmt</code>: 触发程序体，可以是一条SQL语句或是BEGIN和END包含的索条语句</li>
+</ul>
+<p>由上方触发时机(<code>BEFORE</code>,<code>AFTER</code>) 和触发事件(<code>INSERT</code>、<code>UPDATE</code>、<code>DELETE</code>),并且一张表上不能创建两个相同类型的触发器，因此一张表上面最多能创建 <code>6</code> 种类型的触发器：</p>
+<ul>
+<li><code>BEFORE INSERT</code>、<code>BEFORE UPDATE</code>、<code>BEFORE DELETE</code></li>
+<li><code>AFTER INSERT</code>、<code>AFTER UODATE</code>、<code>AFTER DELETE</code></li>
+</ul>
+<h3 id="创建触发器实例"><a href="#创建触发器实例" class="headerlink" title="创建触发器实例"></a>创建触发器实例</h3><p>目的：对新插入数据的名字统一改为 二狗子。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DELIMITER $$</span><br><span class="line">CREATE TRIGGER tg_rename</span><br><span class="line">    BEFORE INSERT</span><br><span class="line">    ON t_user</span><br><span class="line">    FOR EACH ROW</span><br><span class="line">BEGIN</span><br><span class="line">    SET NEW.name = &#x27;二狗子&#x27;;</span><br><span class="line">end $$</span><br><span class="line">DELIMITER ;</span><br><span class="line"></span><br><span class="line"># 触发器执行插入</span><br><span class="line">INSERT INTO t_user (name, gender, age)</span><br><span class="line">VALUES (&#x27;二哈&#x27;, 1, 15);</span><br></pre></td></tr></table></figure>
+
+<p>上方有个 <code>NEW</code>/<code>OLD</code>,表示新增的记录或删除的记录。</p>
+<h3 id="触发器的其他命令"><a href="#触发器的其他命令" class="headerlink" title="触发器的其他命令"></a>触发器的其他命令</h3><ul>
+<li>显示触发器：<code>SHOW TRIGGER</code></li>
+<li>删除触发器：<code>DROP TRIGGER IF EXISTS tg_name</code></li>
+</ul>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>oracle</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>数据库存储过程和存储函数</title>
     <url>/2021/05/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E5%92%8C%E5%AD%98%E5%82%A8%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<p>有时候会忘记数据库的存储函数和存储过程,这里记录一下创建删除存储过程,创建删除存储函数SQL语法…</p>
@@ -108,42 +144,6 @@
 
 <h2 id="存储函数的其他命令"><a href="#存储函数的其他命令" class="headerlink" title="存储函数的其他命令"></a>存储函数的其他命令</h2><ul>
 <li>删除函数 <code>DROP FUNCTION GetAllUsers;</code></li>
-</ul>
-]]></content>
-      <categories>
-        <category>数据库</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-        <tag>oracle</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数据库触发器</title>
-    <url>/2021/05/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A7%A6%E5%8F%91%E5%99%A8/</url>
-    <content><![CDATA[<p>所谓触发器,就是在指定表上，(insert(插入)、update(跟新)、delete(删除))事件动作,触发（After(之后)时机,Before(之前)），执行指定的一群或一个sql语句。</p>
-<span id="more"></span>
-
-<h2 id="创建触发器语法"><a href="#创建触发器语法" class="headerlink" title="创建触发器语法"></a>创建触发器语法</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE TRIGGER trigger_name trigger_time trigger_event ON tbl_name FOR EACH ROW </span><br><span class="line">trigger_stmt</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>trigger_name</code>: 触发器名称，用户自行指定</li>
-<li><code>trigger_time</code>: 触发时机，取值<code>BEFORE</code>（之前）、<code>AFTER</code>（之后）</li>
-<li><code>trigger_event</code>: 触发事件，<code>INSERT</code>、<code>UPDATE</code>、<code>DELETE</code>。（插入、更新、删除）</li>
-<li><code>tbl_name</code>: 需要创建触发器的表名</li>
-<li><code>trigger_stmt</code>: 触发程序体，可以是一条SQL语句或是BEGIN和END包含的索条语句</li>
-</ul>
-<p>由上方触发时机(<code>BEFORE</code>,<code>AFTER</code>) 和触发事件(<code>INSERT</code>、<code>UPDATE</code>、<code>DELETE</code>),并且一张表上不能创建两个相同类型的触发器，因此一张表上面最多能创建 <code>6</code> 种类型的触发器：</p>
-<ul>
-<li><code>BEFORE INSERT</code>、<code>BEFORE UPDATE</code>、<code>BEFORE DELETE</code></li>
-<li><code>AFTER INSERT</code>、<code>AFTER UODATE</code>、<code>AFTER DELETE</code></li>
-</ul>
-<h3 id="创建触发器实例"><a href="#创建触发器实例" class="headerlink" title="创建触发器实例"></a>创建触发器实例</h3><p>目的：对新插入数据的名字统一改为 二狗子。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DELIMITER $$</span><br><span class="line">CREATE TRIGGER tg_rename</span><br><span class="line">    BEFORE INSERT</span><br><span class="line">    ON t_user</span><br><span class="line">    FOR EACH ROW</span><br><span class="line">BEGIN</span><br><span class="line">    SET NEW.name = &#x27;二狗子&#x27;;</span><br><span class="line">end $$</span><br><span class="line">DELIMITER ;</span><br><span class="line"></span><br><span class="line"># 触发器执行插入</span><br><span class="line">INSERT INTO t_user (name, gender, age)</span><br><span class="line">VALUES (&#x27;二哈&#x27;, 1, 15);</span><br></pre></td></tr></table></figure>
-
-<p>上方有个 <code>NEW</code>/<code>OLD</code>,表示新增的记录或删除的记录。</p>
-<h3 id="触发器的其他命令"><a href="#触发器的其他命令" class="headerlink" title="触发器的其他命令"></a>触发器的其他命令</h3><ul>
-<li>显示触发器：<code>SHOW TRIGGER</code></li>
-<li>删除触发器：<code>DROP TRIGGER IF EXISTS tg_name</code></li>
 </ul>
 ]]></content>
       <categories>
