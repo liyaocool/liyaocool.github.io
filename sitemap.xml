@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://liyaocool.github.io/2021/05/08/Maven%E9%85%8D%E7%BD%AE%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E6%BA%90/</loc>
+    
+    <lastmod>2021-05-08</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://liyaocool.github.io/2021/05/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A7%A6%E5%8F%91%E5%99%A8/</loc>
     
     <lastmod>2021-05-07</lastmod>
@@ -94,6 +101,13 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>http://liyaocool.github.io/tags/maven/</loc>
+    <lastmod>2021-05-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   
   <url>
@@ -112,6 +126,13 @@
   
   <url>
     <loc>http://liyaocool.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <lastmod>2021-05-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://liyaocool.github.io/categories/%E8%BD%AF%E4%BB%B6%E5%92%8C%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2021-05-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
